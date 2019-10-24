@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9009131302906105018}
   - component: {fileID: 9009131302906105019}
   - component: {fileID: 9009131302906105016}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: PlayerShot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.0023118183, y: 0.03949374}
