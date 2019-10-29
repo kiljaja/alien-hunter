@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - PlayerShot
+  - Boundary
   layers:
   - Default
   - TransparentFX
