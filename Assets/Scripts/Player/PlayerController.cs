@@ -14,18 +14,23 @@ public class PlayerController : MonoBehaviour
     
     void Start()
     {
-        anim = GetComponent<Animator>();
-        rb2d = GetComponent<Rigidbody2D>();
+        if(anim == null) anim = GetComponent<Animator>();
+        if(rb2d == null ) rb2d = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
         horizontalMovement = Input.GetAxis("Horizontal");
         verticalMovement = Input.GetAxis("Vertical");
-
         if(Input.GetButton("Fire1")){
             Shoot();
         }
+
+        //For testing 
+        if(Input.GetKeyDown(KeyCode.P)){
+            Die();
+        }
+        
     }
 
     void FixedUpdate()
@@ -40,7 +45,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void Shoot(){
-        float yOffset = 1f;
+        float yOffset = 1.4f;
         Vector2 spawnLocation = new Vector2(this.transform.position.x, this.transform.position.y + yOffset);
         GameObject newBullet = Instantiate(projectile, spawnLocation, Quaternion.identity) as GameObject;
     }

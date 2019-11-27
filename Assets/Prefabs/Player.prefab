@@ -47,8 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 582631ba13a69094189f1aaa7bb533fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  projectile: {fileID: 0}
+  speed: 4
+  projectile: {fileID: 9009131302906105017, guid: 756276f53a4059848990df996dd13268,
+    type: 3}
+  rb2d: {fileID: 0}
 --- !u!212 &5672461188367521980
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -135,7 +137,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.4257144, y: 1.84}
+    oldSize: {x: 1.4257144, y: 1.8399999}
     newSize: {x: 7.84, y: 10.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
