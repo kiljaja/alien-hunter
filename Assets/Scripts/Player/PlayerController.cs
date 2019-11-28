@@ -6,6 +6,10 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] 
     private float speed = 2;
+    [SerializeField]
+    float fireRate = 1;
+    [SerializeField]
+    int damage = 10;
     private int health = 100;
     private int MAX_HEALTH = 100;
     private Color HEALTH_BAR_COLOR = new Color(0, 255, 0, 255);
@@ -14,6 +18,8 @@ public class PlayerController : MonoBehaviour
     private Animator anim;
     private SpriteRenderer spriteRenderer;
     private HealthBarController healthBar;
+    private float lastShot;
+
     private float verticalMovement;
     private float horizontalMovement;
     
@@ -32,7 +38,7 @@ public class PlayerController : MonoBehaviour
     {
         horizontalMovement = Input.GetAxis("Horizontal");
         verticalMovement = Input.GetAxis("Vertical");
-        if(Input.GetButton("Fire1")){
+        if(CanShoot() && Input.GetButton("Fire1")){
             Shoot();
         }
 
@@ -55,9 +61,11 @@ public class PlayerController : MonoBehaviour
     }
 
     void Shoot(){
-        float yOffset = (spriteRenderer.bounds.size.y/ 2) + .5f;
+        lastShot = Time.time;
+        float yOffset = (spriteRenderer.bounds.size.y/ 2) + .24f;
         Vector2 spawnLocation = new Vector2(this.transform.position.x, this.transform.position.y + yOffset);
         GameObject newBullet = Instantiate(projectile, spawnLocation, Quaternion.identity) as GameObject;
+        newBullet.GetComponent<PlayerShotController>().Init(Vector2.up, damage);
     }
 
     private void Die(){
@@ -82,6 +90,10 @@ public class PlayerController : MonoBehaviour
     private void UpdateHealthBar(){
         float healthPercent = health / (float)MAX_HEALTH;
         healthBar.SetHealthPercent(healthPercent);
+    }
+
+    private bool CanShoot(){
+        return Time.time > (lastShot + fireRate);
     }
 
 }

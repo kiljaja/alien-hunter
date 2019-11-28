@@ -6,34 +6,37 @@ public class PlayerShotController : MonoBehaviour
 {
     public float speed;
     private Rigidbody2D rb2d;
-    void Start()
+    private Animator anim;
+    private int damage;
+    void Awake()
     {
-        rb2d = GetComponent<Rigidbody2D>();
-        SetDirection(Vector2.up);
+        if(rb2d == null) rb2d = GetComponent<Rigidbody2D>();
+        if(anim == null) anim = GetComponent<Animator>();
     }
-
-    void Update()
-    {
-
-    }
-
-
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.layer != 13)
-        {
-            SelfDestroy();
-        }
-
+        if(col.gameObject.tag == "Boundary") Destroy(gameObject, 1);
+        else SelfDestroy();
     }
     void SelfDestroy()
     {
-        Destroy(gameObject);
+        anim.SetTrigger("Die");
+        Destroy(gameObject, 0.2f);
     }
 
     public void SetDirection(Vector2 direction)
-    {
+    {   
         rb2d.velocity = direction.normalized * speed;
+    }
+
+    public void SetDamage(int damage){
+        if(damage < 0) damage = 0;
+        this.damage = damage;
+    }
+
+    public void Init( Vector2 direction, int damage){
+        SetDirection(direction);
+        SetDamage(damage);
     }
 }
