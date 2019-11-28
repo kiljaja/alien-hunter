@@ -23,13 +23,15 @@ public class PlayerController : MonoBehaviour
     private float verticalMovement;
     private float horizontalMovement;
     
-    void Start()
-    {
-        health = GetHealth();
+    private void Awake(){
         if(anim == null) anim = GetComponent<Animator>();
         if(rb2d == null ) rb2d = GetComponent<Rigidbody2D>();
         if(healthBar == null) healthBar = GetComponentInChildren<HealthBarController>();
         if(spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+    void Start()
+    {
+        health = GetHealth();
         healthBar.SetHealthColor(HEALTH_BAR_COLOR);
         UpdateHealthBar();
     }

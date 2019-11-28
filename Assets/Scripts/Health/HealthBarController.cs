@@ -6,8 +6,7 @@ public class HealthBarController : MonoBehaviour
 {
     private Transform bar;
     private SpriteRenderer spriteRenderer;
-    private void Start()
-    {
+    private void Awake(){
         if(bar == null) bar = transform.Find("Bar");
         if(spriteRenderer == null) spriteRenderer = bar.Find("HealthColor").GetComponent<SpriteRenderer>();
     }
