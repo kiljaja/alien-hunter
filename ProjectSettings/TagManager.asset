@@ -7,6 +7,8 @@ TagManager:
   - PlayerShot
   - Boundary
   - HealthColor
+  - Projectile
+  - EnemyShot
   layers:
   - Default
   - TransparentFX
