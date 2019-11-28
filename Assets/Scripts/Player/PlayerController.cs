@@ -9,7 +9,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float fireRate = 1;
     [SerializeField]
-    int damage = 10;
+    private int shotDamage = 10;
+    [SerializeField]
+    private float shotSpeed = 5;
     private int health = 100;
     private int MAX_HEALTH = 100;
     private Color HEALTH_BAR_COLOR = new Color(0, 255, 0, 255);
@@ -67,7 +69,7 @@ public class PlayerController : MonoBehaviour
         float yOffset = (spriteRenderer.bounds.size.y/ 2) + .24f;
         Vector2 spawnLocation = new Vector2(this.transform.position.x, this.transform.position.y + yOffset);
         GameObject newBullet = Instantiate(projectile, spawnLocation, Quaternion.identity) as GameObject;
-        newBullet.GetComponent<PlayerShotController>().Init(Vector2.up, damage);
+        newBullet.GetComponent<ShotController>().Init(Vector2.up, shotSpeed, shotDamage);
     }
 
     private void Die(){
