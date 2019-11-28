@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PlayerShot
   - Boundary
+  - HealthColor
   layers:
   - Default
   - TransparentFX
