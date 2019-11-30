@@ -20,11 +20,18 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private float fireRate = 1;
     [SerializeField]
+    private int missileDamage = 20;
+    [SerializeField]
+    private float missileSpeed = 5;
+    [SerializeField]
+    private float missileRate = 2;
+    [SerializeField]
+    private Transform target;
+    [SerializeField]
     private Color HEALTH_BAR_COLOR = new Color(251, 42, 42, 255);
     public GameObject shot;
     public GameObject missile;
     private Rigidbody2D rb2d;
-    private Transform player;
     private Animator anim;
     private SpriteRenderer spriteRenderer;
     private HealthBarController healthBar;
@@ -41,12 +48,13 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
-        if (player == null) player = GameObject.FindWithTag("Player").transform;
+        if (target == null) target = GameObject.FindWithTag("Player").transform;
         verticalMovement = 0;
         horizontalMovement = 1;
         healthBar.SetHealthColor(HEALTH_BAR_COLOR);
         UpdateHealthBar();
-        InvokeRepeating("Shoot", .5f, fireRate);
+        InvokeRepeating("ShootShot", .5f, fireRate);
+        InvokeRepeating("ShootMissile", .8f, missileRate);
     }
 
     void Update()
@@ -93,7 +101,7 @@ public class EnemyController : MonoBehaviour
     {
         return Random.Range(0.0f, 1.0f) < shotProbality;
     }
-    private void Shoot()
+    private void ShootShot()
     {
         if (WillShoot())
         {
@@ -104,6 +112,20 @@ public class EnemyController : MonoBehaviour
         }
 
     }
+
+    private void ShootMissile()
+    {
+        if (WillShoot())
+        {
+            float yOffset = ((spriteRenderer.bounds.size.y / 2)) * -1;
+            Vector2 spawnLocation = new Vector2(this.transform.position.x, this.transform.position.y);
+            GameObject newMissile = Instantiate(missile, spawnLocation, Quaternion.identity) as GameObject;
+            newMissile.GetComponent<MissileController>().Init(target, missileDamage, missileSpeed);
+        }
+
+    }
+
+
 
     private void TakeDamage(int damage)
     {
