@@ -40,6 +40,10 @@ public class ShotController : MonoBehaviour
         this.damage = damage;
     }
 
+    public int GetDamage(){
+        return this.damage;
+    }
+
     public void Init(Vector2 direction, float speed, int damage)
     {
         SetSpeed(speed);
