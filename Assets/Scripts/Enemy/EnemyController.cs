@@ -22,6 +22,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private Color HEALTH_BAR_COLOR = new Color(251, 42, 42, 255);
     public GameObject shot;
+    public GameObject missile;
     private Rigidbody2D rb2d;
     private Transform player;
     private Animator anim;

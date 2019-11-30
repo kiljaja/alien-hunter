@@ -17,7 +17,7 @@ public class ShotController : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "Boundary") Destroy(gameObject, 1);
-        else SelfDestroy();
+        else if(!col.gameObject.CompareTag("EnemyMissile")) SelfDestroy();
     }
     void SelfDestroy()
     {
