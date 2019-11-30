@@ -9,14 +9,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9170928496687992668}
-  - component: {fileID: 9170928496687992669}
   - component: {fileID: 9170928496687992658}
+  - component: {fileID: 9170928496687992669}
   - component: {fileID: 9170928496687992671}
   - component: {fileID: 9170928496687992670}
   - component: {fileID: 9170928496687992665}
   m_Layer: 0
   m_Name: Enemy1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36,6 +36,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9170928496687992658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9170928496687992659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1248cc780a6047d4b93f766d67c8671f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 4
+  health: 100
+  MAX_HEALTH: 100
+  shotDamage: 10
+  shotSpeed: 5
+  shotProbality: 0.45
+  fireRate: 0.35
+  missileDamage: 20
+  missileSpeed: 4
+  missileRate: 2
+  target: {fileID: 0}
+  HEALTH_BAR_COLOR: {r: 0.9811321, g: 0.16197933, b: 0.16197933, a: 1}
+  shot: {fileID: 454826749459327569, guid: 738a12d67b2c1474dab1e1aef4c820e7, type: 3}
+  missile: {fileID: 6084779556747246103, guid: b5605af6c12df84489fa4749c36463b6, type: 3}
 --- !u!212 &9170928496687992669
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -84,32 +110,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &9170928496687992658
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9170928496687992659}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1248cc780a6047d4b93f766d67c8671f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 4
-  health: 100
-  MAX_HEALTH: 100
-  shotDamage: 10
-  shotSpeed: 5
-  shotProbality: 0.45
-  fireRate: 0.35
-  missileDamage: 20
-  missileSpeed: 4
-  missileRate: 2
-  target: {fileID: 0}
-  HEALTH_BAR_COLOR: {r: 0.9811321, g: 0.16197933, b: 0.16197933, a: 1}
-  shot: {fileID: 454826749459327569, guid: 738a12d67b2c1474dab1e1aef4c820e7, type: 3}
-  missile: {fileID: 6084779556747246103, guid: b5605af6c12df84489fa4749c36463b6, type: 3}
 --- !u!50 &9170928496687992671
 Rigidbody2D:
   serializedVersion: 4
@@ -336,6 +336,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7606181521229244980, guid: 9a20d44d8eb28ff459a272c3f7224a15,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.45
       objectReference: {fileID: 0}
     - target: {fileID: 7606181520489243670, guid: 9a20d44d8eb28ff459a272c3f7224a15,
         type: 3}
