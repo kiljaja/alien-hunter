@@ -22,12 +22,8 @@ public class MissileController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(health > 0){
-            HandleMovement();
-        } else {
-            rb2d.velocity = -transform.up * 0.1f;
-        }
-        
+        HandleMovement();
+
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -68,7 +64,7 @@ public class MissileController : MonoBehaviour
     {
         health = 0;
         anim.SetTrigger("Die");
-        Destroy(gameObject, .67f);
+        Destroy(gameObject, .35f);
     }
 
     public int GetDamage()
@@ -76,20 +72,24 @@ public class MissileController : MonoBehaviour
         return this.damage;
     }
 
-    public void SetDamage(int damage){
-        if(damage < 0) damage = 0;
+    public void SetDamage(int damage)
+    {
+        if (damage < 0) damage = 0;
         this.damage = damage;
     }
 
-    public void SetTarget(Transform target){
+    public void SetTarget(Transform target)
+    {
         this.target = target;
     }
 
-    public void SetSpeed(float speed){
+    public void SetSpeed(float speed)
+    {
         this.speed = speed;
     }
 
-    public void Init(Transform target, int damage, float speed){
+    public void Init(Transform target, int damage, float speed)
+    {
         SetTarget(target);
         SetDamage(damage);
         SetSpeed(speed);
