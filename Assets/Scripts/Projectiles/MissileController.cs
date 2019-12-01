@@ -18,8 +18,6 @@ public class MissileController : MonoBehaviour
         if (rb2d == null) rb2d = GetComponent<Rigidbody2D>();
         if (anim == null) anim = GetComponent<Animator>();
     }
-
-    // Update is called once per frame
     void FixedUpdate()
     {
         HandleMovement();
@@ -38,9 +36,6 @@ public class MissileController : MonoBehaviour
             Die();
         }
     }
-
-
-
     private void HandleMovement()
     {
         Vector2 direction = (Vector2)target.position - rb2d.position;
@@ -62,7 +57,6 @@ public class MissileController : MonoBehaviour
 
     void Die()
     {
-        health = 0;
         anim.SetTrigger("Die");
         Destroy(gameObject, .35f);
     }
