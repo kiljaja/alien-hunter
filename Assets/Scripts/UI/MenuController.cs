@@ -23,16 +23,21 @@ public class MenuController : MonoBehaviour
 
     }
 
-    public void ToggleMenu(){
-        if(gameObject.activeSelf){
+    public void ToggleMenu()
+    {
+        if (gameObject.activeSelf)
+        {
             gameObject.SetActive(false);
-        } else {
+        }
+        else
+        {
             gameObject.SetActive(true);
-            StartMenu(); 
+            StartMenu();
         }
     }
 
-    public void StartMenu(){
+    public void StartMenu()
+    {
         buttonGroup.SetActive(true);
         howToPlayInfo.SetActive(false);
         settings.SetActive(false);
@@ -40,39 +45,59 @@ public class MenuController : MonoBehaviour
         closeButton.SetActive(false);
     }
 
-    public void GoToHowToPlay(){
+    public void GoToHowToPlay()
+    {
         GoToAnOption();
         howToPlayInfo.SetActive(true);
     }
 
-    public void GoToSettings(){
+    public void GoToSettings()
+    {
         GoToAnOption();
         settings.SetActive(true);
     }
 
-    public void GoToHighScores(){
+    public void GoToHighScores()
+    {
         GoToAnOption();
         highScores.SetActive(true);
     }
 
-    public void GoToAnOption(){
+    public void GoToAnOption()
+    {
         buttonGroup.SetActive(false);
         closeButton.SetActive(true);
     }
 
-    public void PlayButtonHandler(){
+    public void PlayButtonHandler()
+    {
         Scene scene = SceneManager.GetActiveScene();
-        if(scene.name == "IntroScene"){
+        if (scene.name == "IntroScene")
+        {
             SceneManager.LoadScene("Level1");
-        } else if( scene.name == "EndScene"){
+        }
+        else if (scene.name == "EndScene")
+        {
             SceneManager.LoadScene("Level1");
-        } else {
+        }
+        else
+        {
             ToggleMenu();
             Time.timeScale = 1;
         }
     }
 
-    public void QuitGame(){
-        Application.Quit();
+    public void QuitGame()
+    {
+        PlayerPrefs.Save();
+
+        #if (UNITY_EDITOR) //Handle using the editor
+            UnityEditor.EditorApplication.isPlaying = false;
+        #elif (UNITY_STANDALONE) //Stand alone
+            Application.Quit();
+        #elif (UNITY_WEBGL) // WebGl 
+            Application.OpenURL("about:blank");
+        #endif //all other cases
+            Application.Quit();
     }
 }
