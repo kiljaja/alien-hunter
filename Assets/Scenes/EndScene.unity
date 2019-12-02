@@ -761,7 +761,7 @@ MonoBehaviour:
   playerName2: {fileID: 1175918202}
   enterButton: {fileID: 306974838}
   enterName: {fileID: 146196211}
-  dataBank: {fileID: 0}
+  dataBank: {fileID: 719211630}
 --- !u!1 &232001130
 GameObject:
   m_ObjectHideFlags: 0
@@ -4477,7 +4477,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: How to play
+  m_Text: HighScore
 --- !u!222 &1561913188
 CanvasRenderer:
   m_ObjectHideFlags: 0

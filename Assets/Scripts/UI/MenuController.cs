@@ -102,6 +102,7 @@ public class MenuController : MonoBehaviour
     public void UpdateHighScores(){
         UpdatePlayerName();
         enterName.SetActive(false);
+        dataBank.SaveScores();
         GoToHighScores();
     }
 
