@@ -8,6 +8,7 @@ public class SettingsController : MonoBehaviour
     public Slider fxVolume;
     public Toggle hardMode;
     public InputField playerName;
+    
     void Start()
     {
         playerName.text = PlayerPrefs.GetString("playerName");

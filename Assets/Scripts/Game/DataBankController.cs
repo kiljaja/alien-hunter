@@ -23,10 +23,6 @@ public class DataBankController : MonoBehaviour
         {
             ResetHealthScore();
         }
-        else if (IsEndOfGame())
-        {
-            SaveScores();
-        }
     }
 
     private void NewGameData()
@@ -83,7 +79,7 @@ public class DataBankController : MonoBehaviour
     }
 
     // Based on Professor Dr. Devorah Kletenik Solution		
-    private void SaveScores()
+    public void SaveScores()
     {
         string pName = PlayerPrefs.GetString("playerName");
         pName = (pName.Length == 0)? "player" : pName;

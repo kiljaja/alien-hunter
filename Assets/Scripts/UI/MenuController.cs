@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour
 {
@@ -12,9 +13,15 @@ public class MenuController : MonoBehaviour
     public GameObject highScores;
 
     public GameObject closeButton;
+
+    public InputField playerName2;
+    public GameObject enterButton;
+    public GameObject enterName;
+
+    public DataBankController dataBank;
     void Start()
     {
-
+        if( playerName2 != null ) playerName2.text = PlayerPrefs.GetString("playerName");
     }
 
     // Update is called once per frame
@@ -85,6 +92,17 @@ public class MenuController : MonoBehaviour
             ToggleMenu();
             Time.timeScale = 1;
         }
+    }
+
+    public void UpdatePlayerName(){
+        string name = playerName2.text;
+        PlayerPrefs.SetString("playerName", name);
+    }
+
+    public void UpdateHighScores(){
+        UpdatePlayerName();
+        enterName.SetActive(false);
+        GoToHighScores();
     }
 
     public void QuitGame()
