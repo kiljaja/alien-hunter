@@ -19,7 +19,7 @@ public class ShotController : MonoBehaviour
         if (col.gameObject.tag == "Boundary") Destroy(gameObject, 1);
         else if(!col.gameObject.CompareTag("EnemyMissile")) SelfDestroy();
     }
-    void SelfDestroy()
+    public void SelfDestroy()
     {
         anim.SetTrigger("Die");
         Destroy(gameObject, 0.2f);

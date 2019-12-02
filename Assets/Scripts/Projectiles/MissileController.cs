@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MissileController : MonoBehaviour
 {
-    [SerializeField] private int health = 2;
+    [SerializeField] private int health = 1;
     [SerializeField] private int damage = 20;
     [SerializeField] private float speed = 5;
     [SerializeField] private float rotateSpeed = 200;
@@ -30,6 +30,7 @@ public class MissileController : MonoBehaviour
         {
             int damage = 1;
             TakeDamage(damage);
+            col.gameObject.GetComponent<ShotController>().SelfDestroy();
         }
         else if (col.gameObject.CompareTag("Player"))
         {
@@ -38,6 +39,7 @@ public class MissileController : MonoBehaviour
     }
     private void HandleMovement()
     {
+        if(target == null) return; //stop if no target
         Vector2 direction = (Vector2)target.position - rb2d.position;
         direction.Normalize();
         float roateAmount = Vector3.Cross(direction, -transform.up).z;
