@@ -9,14 +9,13 @@ public class HighScoreController : MonoBehaviour
     public Text highScoreNames;
     public Text highScoreScores;
     public Text yourScores;
+
+    void Start(){
+        UpdateHighScores();
+    }
     void OnEnable()
     {
         UpdateHighScores();
-    }
- 
-    private void UpdateNames()
-    {
-        highScoreNames.text = dataBank.GetHighScoresNames();
     }
 
     private void UpdateScores()
@@ -25,13 +24,12 @@ public class HighScoreController : MonoBehaviour
     }
 
     private void UpdatePlayerScore() {
-        yourScores.text = "Your score: " + dataBank.GetPlayersHighScore(); 
+        yourScores.text = "Your score:\n" + dataBank.GetPlayersHighScore(); 
     }
 
 public void UpdateHighScores()
 {
     UpdatePlayerScore();
-    UpdateNames();
     UpdateScores();
 }
 }

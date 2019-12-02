@@ -27,7 +27,7 @@ public class DataBankController : MonoBehaviour
     {
         PlayerPrefs.SetInt("playerHealth", 100);
         PlayerPrefs.SetInt("playerScore", 0);
-        PlayerPrefs.SetString("playerName", "");
+        PlayerPrefs.SetString("playerName", "player");
     }
 
     private bool IsNewGame()
@@ -70,7 +70,7 @@ public class DataBankController : MonoBehaviour
     private void SaveScores()
     {
         string pName = PlayerPrefs.GetString("playerName");
-        pName = SanitizeName(pName); //Prevent player from naming themselves to a top rank
+        // pName = SanitizeName(pName); //Prevent player from naming themselves to a top rank
         int pScore = PlayerPrefs.GetInt("playerScore");
 
         for (int i = 0; i < NUM_HIGH_SCORES; i++)
@@ -96,8 +96,6 @@ public class DataBankController : MonoBehaviour
 
                     PlayerPrefs.SetInt(curScoreKey, pScore);
                     PlayerPrefs.SetString(curNameKey, pName);
-                    Debug.Log("storing " + pName + " as " + i + "th high score, score = " + pScore);
-
 
                     pName = tempName;
                     pScore = tempScore;
@@ -108,36 +106,18 @@ public class DataBankController : MonoBehaviour
         }
     }
 
-    public string GetHighScoresNames(){
-        string output = "";
-        for (int i = 0; i < NUM_HIGH_SCORES; i++)
-        {
-             output +=  PlayerPrefs.GetString(NAME_KEY + i) + "\n";
-        }
-        return output;
-    }
-
     public string GetHighScoresScores(){
         string output = "";
         int numPadding = 3;
         for (int i = 0; i < NUM_HIGH_SCORES; i++)
         {
-            output += PlayerPrefs.GetInt(SCORE_KEY + i).ToString().PadLeft(numPadding, '0') + "\n";
+            output +=  PlayerPrefs.GetString(NAME_KEY + i)+ "   " +PlayerPrefs.GetInt(SCORE_KEY + i).ToString().PadLeft(numPadding, '0') + "\n";
         }
         return output;
     }
 
     public string GetPlayersHighScore(){
-        return SanitizeName(PlayerPrefs.GetString("playerName")) + "   " + PlayerPrefs.GetInt("PlayerScore");  
-    }
-
-
-    private string SanitizeName( string name){
-        if(name.Length  == 0) return "InvalidName";
-        else {
-            string strPart = name.Substring(0, NAME_KEY.Length);
-            return (strPart == NAME_KEY)? "InvalidName" : name; 
-        }
+        return PlayerPrefs.GetString("playerName") + "   " + PlayerPrefs.GetInt("playerScore");  
     }
 
 }

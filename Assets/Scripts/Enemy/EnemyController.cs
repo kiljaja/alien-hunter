@@ -145,6 +145,9 @@ public class EnemyController : MonoBehaviour
         UpdateHealthBar();
     }
 
+    void OnDestroy(){
+        gameController.LoadNextScene();
+    }
     private void UpdateHealthBar()
     {
         float healthPercent = health / (float)MAX_HEALTH;
