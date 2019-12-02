@@ -28,6 +28,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private Transform target;
     [SerializeField]
+    private GameController gameController;
+    [SerializeField]
     private Color HEALTH_BAR_COLOR = new Color(251, 42, 42, 255);
     public GameObject shot;
     public GameObject missile;
@@ -49,6 +51,7 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         if (target == null) target = GameObject.FindWithTag("Player").transform;
+        if(gameController == null) gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
         verticalMovement = 0;
         horizontalMovement = 1;
         healthBar.SetHealthColor(HEALTH_BAR_COLOR);
@@ -59,8 +62,11 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-        //For testing
-        if (Input.GetKeyDown(KeyCode.Q)) Die();
+        //CheatCode but you lose points
+        if (Input.GetKeyDown(KeyCode.Q)){
+            gameController.DecreaseScore(100);
+            Die();
+        } 
     }
 
     void FixedUpdate()
@@ -82,6 +88,7 @@ public class EnemyController : MonoBehaviour
         {
             int damage = col.gameObject.GetComponent<ShotController>().GetDamage();
             TakeDamage(damage);
+            gameController.IncreaseScore(20);
         }
 
     }

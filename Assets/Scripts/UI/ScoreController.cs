@@ -9,7 +9,7 @@ public class ScoreController : MonoBehaviour
     void Start()
     {
         if (textContainer == null) textContainer = GetComponentInChildren<TextMeshPro>();
-        UpdateScore(GetScore());
+        UpdateScore(PlayerPrefs.GetInt("playerScore"));
 
     }
 
@@ -17,9 +17,5 @@ public class ScoreController : MonoBehaviour
         if(score < 0) score = 0;
         string formatedScore = score.ToString().PadLeft(3, '0');
         textContainer.text = formatedScore;
-    }
-
-    public int GetScore(){
-        return 200;
     }
 }

@@ -26,7 +26,7 @@ public class DataBankController : MonoBehaviour
     private void NewGameData()
     {
         PlayerPrefs.SetInt("playerHealth", 100);
-        PlayerPrefs.SetInt("playerScore", 100);
+        PlayerPrefs.SetInt("playerScore", 0);
         PlayerPrefs.SetString("playerName", "");
     }
 

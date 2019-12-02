@@ -59,6 +59,7 @@ MonoBehaviour:
   missileSpeed: 4
   missileRate: 2
   target: {fileID: 0}
+  gameController: {fileID: 0}
   HEALTH_BAR_COLOR: {r: 0.9811321, g: 0.16197933, b: 0.16197933, a: 1}
   shot: {fileID: 454826749459327569, guid: 738a12d67b2c1474dab1e1aef4c820e7, type: 3}
   missile: {fileID: 6084779556747246103, guid: b5605af6c12df84489fa4749c36463b6, type: 3}
