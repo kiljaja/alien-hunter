@@ -89,15 +89,6 @@ public class MenuController : MonoBehaviour
 
     public void QuitGame()
     {
-        PlayerPrefs.Save();
-
-        #if (UNITY_EDITOR) //Handle using the editor
-            UnityEditor.EditorApplication.isPlaying = false;
-        #elif (UNITY_STANDALONE) //Stand alone
-            Application.Quit();
-        #elif (UNITY_WEBGL) // WebGl 
-            Application.OpenURL("about:blank");
-        #endif //all other cases
-            Application.Quit();
+        Application.Quit();
     }
 }
