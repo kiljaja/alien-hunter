@@ -11,6 +11,7 @@ public class DataBankController : MonoBehaviour
 
     private void Awake()
     {
+        InitData();
         if (!PlayerPrefs.HasKey("isInitialized"))
         {
             InitData();
