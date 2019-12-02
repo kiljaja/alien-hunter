@@ -86,7 +86,7 @@ public class DataBankController : MonoBehaviour
     private void SaveScores()
     {
         string pName = PlayerPrefs.GetString("playerName");
-        // pName = SanitizeName(pName); //Prevent player from naming themselves to a top rank
+        pName = (pName.Length == 0)? "player" : pName;
         int pScore = PlayerPrefs.GetInt("playerScore");
 
         for (int i = 0; i < NUM_HIGH_SCORES; i++)
