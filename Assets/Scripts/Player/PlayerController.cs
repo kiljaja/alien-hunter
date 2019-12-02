@@ -108,11 +108,14 @@ public class PlayerController : MonoBehaviour
     private void TakeDamage(int damage)
     {
         health -= damage;
-        if (health <= 0)
+        if( health < 0) health = 0;
+        PlayerPrefs.SetInt("playerHealth", health);
+        if (health == 0)
         {
-            health = 0;
+            PlayerPrefs.SetInt("playerHealth", 200);
             Die();
         }
+        
         UpdateHealthBar();
     }
 

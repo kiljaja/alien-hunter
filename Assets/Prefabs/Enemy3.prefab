@@ -49,8 +49,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  health: 100
-  MAX_HEALTH: 100
+  health: 200
+  MAX_HEALTH: 200
   shotDamage: 20
   shotSpeed: 5
   shotProbality: 0.45
