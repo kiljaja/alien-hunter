@@ -48,7 +48,7 @@ public class DataBankController : MonoBehaviour
 
     private void ResetHealthScore()
     {
-        PlayerPrefs.SetInt("playerHealth", 100);
+        PlayerPrefs.SetInt("playerHealth", 200);
         PlayerPrefs.SetInt("playerScore", 0);
     }
 

@@ -12,8 +12,8 @@ public class PlayerController : MonoBehaviour
     private int shotDamage = 10;
     [SerializeField]
     private float shotSpeed = 5;
-    private int health = 100;
-    private int MAX_HEALTH = 100;
+    private int health = 200;
+    private int MAX_HEALTH = 200;
     private Color HEALTH_BAR_COLOR = new Color(0, 255, 0, 255);
     public GameObject projectile;
     private GameController gameController;
@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         if (gameController == null) gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
-        health = GetHealth();
+        health = PlayerPrefs.GetInt("playerHealth");
         healthBar.SetHealthColor(HEALTH_BAR_COLOR);
         UpdateHealthBar();
     }
@@ -103,12 +103,6 @@ public class PlayerController : MonoBehaviour
         gameController.DecreaseScore(30);
         anim.SetTrigger("Die");
         Destroy(gameObject, .750f);
-    }
-
-    private int GetHealth()
-    {
-        int savedHealth = 100;
-        return (savedHealth < health) ? savedHealth : health;
     }
 
     private void TakeDamage(int damage)
