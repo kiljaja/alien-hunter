@@ -9,17 +9,11 @@ public class HighScoreController : MonoBehaviour
     public Text highScoreNames;
     public Text highScoreScores;
     public Text yourScores;
-    void Start()
+    void OnEnable()
     {
         UpdateHighScores();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
+ 
     private void UpdateNames()
     {
         highScoreNames.text = dataBank.GetHighScoresNames();

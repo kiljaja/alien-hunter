@@ -22,16 +22,6 @@ public class DataBankController : MonoBehaviour
             SaveScores();
         }
     }
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     private void NewGameData()
     {
