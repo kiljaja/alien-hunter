@@ -65,7 +65,7 @@ public class MissileController : MonoBehaviour
 
     public int GetDamage()
     {
-        return this.damage;
+        return (health > 0)? this.damage : 0;
     }
 
     public void SetDamage(int damage)
