@@ -36,6 +36,7 @@ public class EnemyController : MonoBehaviour
     private Animator anim;
     private SpriteRenderer spriteRenderer;
     private HealthBarController healthBar;
+    private AudioSource explosiontSound;
     private float verticalMovement;
     private float horizontalMovement;
 
@@ -45,12 +46,14 @@ public class EnemyController : MonoBehaviour
         if (rb2d == null) rb2d = GetComponent<Rigidbody2D>();
         if (spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>();
         if (healthBar == null) healthBar = GetComponentInChildren<HealthBarController>();
+        if (explosiontSound == null) explosiontSound = GetComponent<AudioSource>();
     }
 
     void Start()
     {
         if (target == null) target = GameObject.FindWithTag("Player").transform;
         if(gameController == null) gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
+        
         verticalMovement = 0;
         horizontalMovement = 1;
         healthBar.SetHealthColor(HEALTH_BAR_COLOR);
@@ -61,6 +64,7 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
+        
         //CheatCode but you lose points
         if (Input.GetKeyDown(KeyCode.Q)){
             gameController.DecreaseScore(100);
@@ -99,9 +103,14 @@ public class EnemyController : MonoBehaviour
 
     void Die()
     {
+        PlayExplosionSound();
         anim.SetTrigger("Die");
         Destroy(gameObject, .755f);
         
+    }
+
+    private void PlayExplosionSound(){ 
+        AudioSource.PlayClipAtPoint(explosiontSound.clip, this.gameObject.transform.position, PlayerPrefs.GetFloat("fxVolume"));
     }
 
     private bool WillShoot()

@@ -10,6 +10,7 @@ public class MissileController : MonoBehaviour
     [SerializeField] private float rotateSpeed = 200;
     [SerializeField]
     private Transform target;
+    private AudioSource burstSound;
     private Animator anim;
     private Rigidbody2D rb2d;
 
@@ -17,6 +18,11 @@ public class MissileController : MonoBehaviour
     {
         if (rb2d == null) rb2d = GetComponent<Rigidbody2D>();
         if (anim == null) anim = GetComponent<Animator>();
+        if (burstSound == null) burstSound = GetComponent<AudioSource>();
+    }
+
+    private void Start(){
+        PlayBurstSound();
     }
     void FixedUpdate()
     {
@@ -39,7 +45,7 @@ public class MissileController : MonoBehaviour
     }
     private void HandleMovement()
     {
-        if(target == null) return; //stop if no target
+        if (target == null) return; //stop if no target
         Vector2 direction = (Vector2)target.position - rb2d.position;
         direction.Normalize();
         float roateAmount = Vector3.Cross(direction, -transform.up).z;
@@ -59,13 +65,14 @@ public class MissileController : MonoBehaviour
 
     void Die()
     {
+        PlayBurstSound();
         anim.SetTrigger("Die");
         Destroy(gameObject, .35f);
     }
 
     public int GetDamage()
     {
-        return (health > 0)? this.damage : 0;
+        return (health > 0) ? this.damage : 0;
     }
 
     public void SetDamage(int damage)
@@ -89,6 +96,10 @@ public class MissileController : MonoBehaviour
         SetTarget(target);
         SetDamage(damage);
         SetSpeed(speed);
+    }
+
+    private void PlayBurstSound(){ 
+        AudioSource.PlayClipAtPoint(burstSound.clip, this.gameObject.transform.position, PlayerPrefs.GetFloat("fxVolume"));
     }
 
 }
