@@ -24,7 +24,7 @@ public class GameController : MonoBehaviour
         }
 
         if(shouldLoadNextScene()){
-            LoadNextScene();
+            StartCoroutine(NextScene());
         }
     }
 
@@ -55,6 +55,11 @@ public class GameController : MonoBehaviour
     public void LoadNextScene(){
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
         SceneManager.LoadScene(nextSceneIndex);
+    }
+
+    IEnumerator NextScene(){
+        yield return new WaitForSeconds(1);
+        LoadNextScene();
     }
 
     private bool shouldLoadNextScene(){
