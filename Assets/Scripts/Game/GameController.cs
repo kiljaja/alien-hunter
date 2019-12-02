@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
     public ScoreController scorePanel;
 
     private GameObject enemy;
+    private GameObject player;
 
     private int playerScore;
 
@@ -16,6 +17,7 @@ public class GameController : MonoBehaviour
     {
         playerScore = PlayerPrefs.GetInt("playerScore");
         enemy = GameObject.FindWithTag("Enemy");
+        player = GameObject.FindWithTag("Player");
     }
     void Update()
     {
@@ -25,6 +27,10 @@ public class GameController : MonoBehaviour
 
         if(shouldLoadNextScene()){
             StartCoroutine(NextScene());
+        }
+
+        if(shouldReloadScene()){
+            StartCoroutine(ReloadScene());
         }
     }
 
@@ -62,9 +68,20 @@ public class GameController : MonoBehaviour
         LoadNextScene();
     }
 
+    IEnumerator ReloadScene(){
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
     private bool shouldLoadNextScene(){
         return enemy == null;
     }
+
+    private bool shouldReloadScene(){
+        return player == null;
+    }
+
+
 
 
 
