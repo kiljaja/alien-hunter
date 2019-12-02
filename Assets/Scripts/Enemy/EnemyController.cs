@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class EnemyController : MonoBehaviour
 {
     [SerializeField]
@@ -102,6 +101,7 @@ public class EnemyController : MonoBehaviour
     {
         anim.SetTrigger("Die");
         Destroy(gameObject, .755f);
+        
     }
 
     private bool WillShoot()
@@ -145,9 +145,7 @@ public class EnemyController : MonoBehaviour
         UpdateHealthBar();
     }
 
-    void OnDestroy(){
-        gameController.LoadNextScene();
-    }
+    
     private void UpdateHealthBar()
     {
         float healthPercent = health / (float)MAX_HEALTH;

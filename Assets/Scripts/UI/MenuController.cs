@@ -65,7 +65,7 @@ public class MenuController : MonoBehaviour
         if(scene.name == "IntroScene"){
             SceneManager.LoadScene("Level1");
         } else if( scene.name == "EndScene"){
-            SceneManager.LoadScene("IntroScene");
+            SceneManager.LoadScene("Level1");
         } else {
             ToggleMenu();
             Time.timeScale = 1;

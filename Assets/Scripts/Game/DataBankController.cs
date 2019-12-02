@@ -11,7 +11,6 @@ public class DataBankController : MonoBehaviour
 
     private void Awake()
     {
-        InitData();
         if (!PlayerPrefs.HasKey("isInitialized"))
         {
             InitData();
@@ -19,22 +18,38 @@ public class DataBankController : MonoBehaviour
         else if (IsNewGame())
         {
             NewGameData();
-        } else if (IsEndOfGame()){
+        }
+        else if (IsResetGame())
+        {
+            ResetHealthScore();
+        }
+        else if (IsEndOfGame())
+        {
             SaveScores();
         }
     }
 
     private void NewGameData()
     {
-        PlayerPrefs.SetInt("playerHealth", 100);
-        PlayerPrefs.SetInt("playerScore", 0);
         PlayerPrefs.SetString("playerName", "player");
     }
 
     private bool IsNewGame()
     {
         Scene currentScene = SceneManager.GetActiveScene();
+        return currentScene.name == "IntroScene";
+    }
+
+    private bool IsResetGame()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
         return currentScene.name == "Level1";
+    }
+
+    private void ResetHealthScore()
+    {
+        PlayerPrefs.SetInt("playerHealth", 100);
+        PlayerPrefs.SetInt("playerScore", 0);
     }
 
     private bool IsEndOfGame()
@@ -107,18 +122,20 @@ public class DataBankController : MonoBehaviour
         }
     }
 
-    public string GetHighScoresScores(){
+    public string GetHighScoresScores()
+    {
         string output = "";
         int numPadding = 3;
         for (int i = 0; i < NUM_HIGH_SCORES; i++)
         {
-            output +=  PlayerPrefs.GetString(NAME_KEY + i)+ "   " +PlayerPrefs.GetInt(SCORE_KEY + i).ToString().PadLeft(numPadding, '0') + "\n";
+            output += PlayerPrefs.GetString(NAME_KEY + i) + "   " + PlayerPrefs.GetInt(SCORE_KEY + i).ToString().PadLeft(numPadding, '0') + "\n";
         }
         return output;
     }
 
-    public string GetPlayersHighScore(){
-        return PlayerPrefs.GetString("playerName") + "   " + PlayerPrefs.GetInt("playerScore");  
+    public string GetPlayersHighScore()
+    {
+        return PlayerPrefs.GetString("playerName") + "   " + PlayerPrefs.GetInt("playerScore");
     }
 
 }
