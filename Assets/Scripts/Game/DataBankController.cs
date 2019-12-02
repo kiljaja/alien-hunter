@@ -15,28 +15,15 @@ public class DataBankController : MonoBehaviour
         {
             InitData();
         }
-        else if (IsNewGame())
-        {
-            NewGameData();
-        }
-        else if (IsResetGame())
+
+        if (IsNewGame())
         {
             ResetHealthScore();
         }
-    }
-
-    private void NewGameData()
-    {
-        PlayerPrefs.SetString("playerName", "player");
+        
     }
 
     private bool IsNewGame()
-    {
-        Scene currentScene = SceneManager.GetActiveScene();
-        return currentScene.name == "IntroScene";
-    }
-
-    private bool IsResetGame()
     {
         Scene currentScene = SceneManager.GetActiveScene();
         return currentScene.name == "Level1";
@@ -48,14 +35,10 @@ public class DataBankController : MonoBehaviour
         PlayerPrefs.SetInt("playerScore", 0);
     }
 
-    private bool IsEndOfGame()
-    {
-        Scene currentScene = SceneManager.GetActiveScene();
-        return currentScene.name == "EndScene";
-    }
 
     private void InitData()
     {
+        ResetHealthScore();
         PlayerPrefs.SetInt("isInitialized", 1);
         PlayerPrefs.SetFloat("musicVolume", 1f);
         PlayerPrefs.SetFloat("fxVolume", 1f);
