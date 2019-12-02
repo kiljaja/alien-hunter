@@ -53,6 +53,7 @@ public class EnemyController : MonoBehaviour
     {
         if (target == null) target = GameObject.FindWithTag("Player").transform;
         if(gameController == null) gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
+        if(PlayerPrefs.GetInt("isHardMode") == 1) HardModeStats();
         
         verticalMovement = 0;
         horizontalMovement = 1;
@@ -159,5 +160,12 @@ public class EnemyController : MonoBehaviour
     {
         float healthPercent = health / (float)MAX_HEALTH;
         healthBar.SetHealthPercent(healthPercent);
+    }
+
+    private void HardModeStats(){
+        health += 50;
+        MAX_HEALTH += 50;
+        shotDamage += 5;
+        missileDamage +=5;
     }
 }
