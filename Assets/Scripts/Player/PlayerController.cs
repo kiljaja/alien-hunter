@@ -104,12 +104,14 @@ public class PlayerController : MonoBehaviour
     private void Die()
     {
         PlayExplosionSound();
-        gameController.DecreaseScore(30);
         anim.SetTrigger("Die");
+        gameController.DecreaseScore(30);
+        PlayerPrefs.SetInt("playerHealth", 200);
         Destroy(gameObject, .750f);
     }
 
-    private void PlayExplosionSound(){ 
+    private void PlayExplosionSound()
+    {
         AudioSource.PlayClipAtPoint(explosiontSound.clip, this.gameObject.transform.position, PlayerPrefs.GetFloat("fxVolume"));
     }
 
@@ -120,7 +122,6 @@ public class PlayerController : MonoBehaviour
         PlayerPrefs.SetInt("playerHealth", health);
         if (health == 0)
         {
-            PlayerPrefs.SetInt("playerHealth", 200);
             Die();
         }
 
