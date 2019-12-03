@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     private Animator anim;
     private SpriteRenderer spriteRenderer;
     private HealthBarController healthBar;
+    private AudioSource explosiontSound;
     private float lastShot;
 
     private float verticalMovement;
@@ -32,6 +33,8 @@ public class PlayerController : MonoBehaviour
         if (rb2d == null) rb2d = GetComponent<Rigidbody2D>();
         if (healthBar == null) healthBar = GetComponentInChildren<HealthBarController>();
         if (spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>();
+        if (explosiontSound == null) explosiontSound = GetComponent<AudioSource>();
+
     }
     void Start()
     {
@@ -100,22 +103,27 @@ public class PlayerController : MonoBehaviour
 
     private void Die()
     {
+        PlayExplosionSound();
         gameController.DecreaseScore(30);
         anim.SetTrigger("Die");
         Destroy(gameObject, .750f);
     }
 
+    private void PlayExplosionSound(){ 
+        AudioSource.PlayClipAtPoint(explosiontSound.clip, this.gameObject.transform.position, PlayerPrefs.GetFloat("fxVolume"));
+    }
+
     private void TakeDamage(int damage)
     {
         health -= damage;
-        if( health < 0) health = 0;
+        if (health < 0) health = 0;
         PlayerPrefs.SetInt("playerHealth", health);
         if (health == 0)
         {
             PlayerPrefs.SetInt("playerHealth", 200);
             Die();
         }
-        
+
         UpdateHealthBar();
     }
 
